@@ -20,7 +20,7 @@ class ProductModel
 
     public function setDescription($description)
     {
-        $this->description = unserialize($description);
+        $this->description = $description;
     }
 
 
@@ -32,7 +32,7 @@ class ProductModel
 
     public function setIngridients($ingridients)
     {
-        $this->ingridients = unserialize($ingridients);
+        $this->ingridients = $ingridients;
     }
 
 

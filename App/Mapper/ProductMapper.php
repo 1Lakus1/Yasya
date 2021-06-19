@@ -20,10 +20,10 @@ class ProductMapper
         if($row) {
             $product = new ProductModel();
             $product->setTitle($row['title']);
-            $product->setIngridients($row['ingridients']);
+            $product->setIngridients(unserialize($row['ingridients']));
             $product->setImgName($row['img']);
             $product->setId($row['id']);
-            $product->setDescription($row['description']);
+            $product->setDescription(unserialize($row['description']));
             return $product;
         }else{
             throw new \Exception("This product doesn't exist!");
@@ -33,10 +33,9 @@ class ProductMapper
     public static function setProduct(object $product): void
     {
         $db = Database::connect();
-        $sql = 'INSERT INTO products(name, price, img) VALUES (:name, :price, :img)';
+        $sql = 'INSERT INTO products(title, img) VALUES (:title, :img)';
         $statement = $db->prepare($sql);
-        $statement->bindParam('name', $product->name);
-        $statement->bindParam('price', $product->price);
+        $statement->bindParam('name', $product->title);
         $statement->bindParam('img', $product->imgName);
         $statement->execute();
     }
@@ -64,10 +63,10 @@ class ProductMapper
             while ($row = $statement->fetch()) {
                 $product = new ProductModel();
                 $product->setTitle($row['title']);
-                $product->setIngridients($row['ingridients']);
+                $product->setIngridients(unserialize($row['ingridients']));
                 $product->setImgName($row['img']);
                 $product -> setLevel($row['level']);
-                $product->setDescription($row['description']);
+                $product->setDescription(unserialize($row['description']));
                 $product->setTime($row['time']);
                 $product->setId($row['id']);
                 $product_list[] = $product;
@@ -96,5 +95,9 @@ class ProductMapper
             $product_list[] = $product;
         }
     }
+
+    /*public static function setProduct($title, $img, $description, $ingridients){
+
+    }*/
 
 }

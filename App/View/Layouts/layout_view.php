@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <script defer src="js/menu.js"></script>
     <script defer src="js/search.js"></script>
+    <script defer src="js/<?php echo $template ?>.js"></script>
 </head>
 <body>
 <div class = "wrapper">
