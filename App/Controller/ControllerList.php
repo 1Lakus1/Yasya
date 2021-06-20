@@ -12,4 +12,12 @@ class ControllerList extends \Framework\Core\Controller
         $this->renderer->render("layout_view", $product_list, 'list_view');
     }
 
+    public function actionSearch()
+    {
+        if($_POST['search'] == ''){
+            header("Location: /list");
+        }
+        $product_list = ProductMapper::getProductsSearch($_POST['search']);
+        $this->renderer->render("layout_view", $product_list, 'list_view');
+    }
 }

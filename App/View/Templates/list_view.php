@@ -7,7 +7,7 @@
                 <div class = "recept__wrapper">
                     <div class = "recept__img">
                         <a href = "/product?id=<?php echo $product->getId(); ?>">
-                            <img alt = "" src = "src/images/<?php echo $product->getImgName(); ?>">
+                            <img alt = "" src = "/src/images/<?php echo $product->getImgName(); ?>">
                         </a>
                     </div>
                     <div class = "recept__info">
@@ -16,7 +16,7 @@
                             <span class = "recept__time"><i class="far fa-clock"></i><?php echo $product->getTime(); ?> мин.</span>
                             <span class = "recept__complexity"><i class="fas fa-pizza-slice"></i><?php echo $product->getLevel(); ?></span>
                         </div>
-                        <p class = "recept__description"><?php echo $product->getDescription()[0];?><a href="/product?id=<?php echo $product->getId(); ?>">...</a>
+                        <p class = "recept__description"><?php foreach($product->getDescription() as $step){ echo $step;};?>
                         </p>
                         <nav class = "navigation">
                             <ul class = "networks">

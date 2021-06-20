@@ -78,22 +78,24 @@ class ProductMapper
 
     public static function getProductsSearch($title){
         $db = Database::connect();
+        $title = '%'.$title.'%';
         $product_list = [];
-        $sql = "SELECT products.id, description, level, time, title, img, ingridients FROM products JOIN descriptions ON products.id = descriptions.product_id;";
+        $sql = "SELECT products.id, description, level, time, title, img, ingridients FROM products JOIN descriptions ON products.id = descriptions.product_id WHERE title LIKE :title;";
         $statement = $db->prepare($sql);
-        /*$statement->bindParam('title', $title);*/
+        $statement->bindParam('title', $title);
         $statement->execute();
         while ($row = $statement->fetch()) {
             $product = new ProductModel();
             $product->setTitle($row['title']);
-            $product->setIngridients($row['ingridients']);
+            $product->setIngridients(unserialize($row['ingridients']));
             $product->setImgName($row['img']);
             $product -> setLevel($row['level']);
-            $product->setDescription($row['description']);
+            $product->setDescription(unserialize($row['description']));
             $product->setTime($row['time']);
             $product->setId($row['id']);
             $product_list[] = $product;
         }
+        return $product_list;
     }
 
     /*public static function setProduct($title, $img, $description, $ingridients){

@@ -98,7 +98,7 @@
   transition: 0.5s ease;
 }
 .article__titleBg {
-  z-index: 1000;
+  z-index: 100;
   position: absolute;
   top: 15px;
   left: 15px;
